@@ -53,8 +53,8 @@ public class SkyView
         double avg = 0;
         double div = 0;
         double out = 0;
-        for (int r=startRow; r<endRow; ++r) {
-            for (int c=startCol; c<endCol; ++c) {
+        for (int r=startRow; r<=endRow; ++r) {
+            for (int c=startCol; c<=endCol; ++c) {
                 avg = avg + view[r][c];
                 ++div;
             }
