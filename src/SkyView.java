@@ -17,19 +17,24 @@ public class SkyView
    *                 scanned have been copied to view and are ordered as
    *                 in the original rectangular area of sky.
    */
-  public SkyView(int numRows, int numCols, double[] scanned)
+    public SkyView(int numRows, int numCols, double[] scanned) {
   
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+        view = new double[numRows][numCols];
+        int cnt = 0;
+        for (int r=0; r<numRows; ++r) {
+            if (r%2==0) {
+                for (int c=0; c<numCols; ++c) {
+                    view[r][c] = scanned[cnt];
+                    ++cnt;
+                }
+            } else {
+                for (int c=numCols-1; c>=0; c--) {
+                    view[r][c] = scanned[cnt];
+                    ++cnt;
+                }
+            }
+        }         
+    }
 
   // Part(b)
 
@@ -42,19 +47,21 @@ public class SkyView
    *  Precondition: 0 <= startCol <= endCol < view[0].length
    *  @return the average of the values in the specified section of view
    */
-  public double getAverage(int startRow, int endRow,
-                           int startCol, int endCol)
+    public double getAverage(int startRow, int endRow,
+                           int startCol, int endCol) {
 
-          
-          
-          
-          
-
-          
-          
-          
-          
-          
+        double avg = 0;
+        double div = 0;
+        double out = 0;
+        for (int r=startRow; r<endRow; ++r) {
+            for (int c=startCol; c<endCol; ++c) {
+                avg = avg + view[r][c];
+                ++div;
+            }
+        }   
+        out = avg/div;
+        return out;
+    }        
           
   /*******************************************************************************/
 
